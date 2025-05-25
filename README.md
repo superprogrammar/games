@@ -1,205 +1,271 @@
-
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>Catalogue - Boucéau de Games</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>حاسبة العمر الأسطورية 🧙‍♂️</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0; padding: 0;
+    font-family: 'Cairo', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background 0.5s ease;
+  }
+
+  .container {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 35px 25px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
+    text-align: center;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .greeting {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #ddd;
+  }
+
+  label {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #fff;
+  }
+
+  input[type="date"] {
+    width: 100%;
+    padding: 14px 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255,255,255,0.9);
+    color: #222;
+    margin-bottom: 25px;
+    transition: box-shadow 0.3s ease;
+  }
+
+  input[type="date"]:focus {
+    box-shadow: 0 0 8px 2px #4a90e2;
+  }
+
+  button {
+    background: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 14px 25px;
+    font-size: 17px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  button:hover {
+    background: #357ABD;
+    transform: scale(1.07);
+  }
+
+  #resultat {
+    margin-top: 30px;
+    font-size: 19px;
+    line-height: 1.7;
+    color: #fafafa;
+    min-height: 140px;
+    white-space: pre-line;
+  }
+
+  .copy-btn {
+    background: #7ed6df;
+    color: #222;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+    border: none;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    transition: background 0.3s ease;
+  }
+
+  .copy-btn:hover {
+    background: #4ecdc4;
+  }
+
+  /* الوضع الليلي والعادي */
+  @media (prefers-color-scheme: light) {
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom, #ff6f61, #f2f2f2); /* Dégradé du rouge au gris clair */
+      background: linear-gradient(135deg, #74ebd5, #ACB6E5);
       color: #222;
-      line-height: 1.6;
     }
-
-    nav {
-      background-color: rgba(51, 51, 51, 0.8); /* Fond semi-transparent */
-      padding: 15px 0;
+    .container {
+      background: rgba(255,255,255,0.9);
+      color: #222;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
     }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.1em;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav ul li a:hover {
-      color: #ff6347;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 3em;
-      margin-top: 50px;
-      color: #333;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .game-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 50px auto;
-      padding: 0 20px;
-    }
-
-    .game-card {
+    input[type="date"] {
       background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      width: 320px;
-      overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
+      color: #222;
     }
-
-    .game-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    button {
+      background: #007bff;
+      color: #fff;
     }
-
-    .game-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 2px solid #ddd;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
+    button:hover {
+      background: #0056b3;
     }
-
-    .game-card h3 {
-      font-size: 1.8em;
-      color: #333;
-      margin-top: 15px;
-      font-weight: 600;
+    .copy-btn {
+      background: #4ecdc4;
+      color: #222;
     }
-
-    .game-card p {
-      font-size: 1em;
-      color: #666;
-      padding: 0 20px;
-      margin: 20px 0;
+    .copy-btn:hover {
+      background: #2c9c94;
     }
-
-    .game-card a {
-      display: inline-block;
-      margin-bottom: 20px;
-      padding: 12px 24px;
-      background: #ff6347;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-      font-size: 1.1em;
-    }
-
-    .game-card a:hover {
-      background: #e55339;
-    }
-
-    .game-card a:active {
-      transform: scale(0.98);
-    }
-
-    .game-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.1);
-      border-radius: 16px;
-      z-index: -1;
-      transition: background 0.3s ease;
-    }
-
-    .game-card:hover::before {
-      background: rgba(0,0,0,0.15);
-    }
-
-    footer {
-      background: rgba(51, 51, 51, 0.8); /* Fond semi-transparent */
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 50px;
-    }
-
-    @media screen and (max-width: 768px) {
-      .game-grid {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <!-- Menu de navigation -->
-  <nav>
-    <ul>
-      <li><a href="#accueil">Accueil</a></li>
-      <li><a href="#catalogue">Catalogue</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+<div class="container">
+  <h1>حاسبة العمر الأسطورية 🧙‍♂️</h1>
+  <p class="greeting" id="greeting">مرحبًا! أدخل تاريخ ميلادك لمعرفة عمرك بدقة كاملة.</p>
 
-  <!-- Titre principal -->
-  <h2 id="accueil">🎮 Nos jeux populaires</h2>
+  <label for="dob">📅 اختر تاريخ ميلادك:</label>
+  <input type="date" id="dob" max="" />
 
-  <!-- Catalogue de jeux -->
-  <div class="game-grid" id="catalogue">
+  <button id="calcBtn">احسب عمري الآن</button>
 
-    <!-- Snake avec nouvelle image -->
-    <div class="game-card">
-      <img src="/mnt/data/th (1).jpg" alt="Snake">
-      <h3>Snake</h3>
-      <p>Le jeu rétro incontournable ! Mangez les pommes pour grandir et évitez de vous mordre la queue.</p>
-      <a href="https://sukuna3340.github.io/snackphone/" target="_blank">Jouer</a>
-    </div>
+  <div id="resultat"></div>
+  <button class="copy-btn" id="copyBtn" style="display:none;">نسخ النتيجة 📋</button>
+</div>
 
-    <!-- Subway Surfers avec nouvelle image -->
-    <div class="game-card">
-      <img src="/mnt/data/f12d9c75-3573-4f51-83b8-e5ceb5cd0617.png" alt="Subway Surfers">
-      <h3>Subway Surfers</h3>
-      <p>Faites des courses effrénées sur les rails, esquivez les trains et collectez des pièces !</p>
-      <a href="https://poki.com/fr/g/subway-surfers" target="_blank">Jouer</a>
-    </div>
+<script>
+  // تعيين الحد الأقصى لتاريخ الميلاد (اليوم)
+  const dobInput = document.getElementById('dob');
+  const todayISO = new Date().toISOString().split('T')[0];
+  dobInput.setAttribute('max', todayISO);
 
-    <!-- Minecraft -->
-    <div class="game-card">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Minecraft_Logo.svg" alt="Minecraft">
-      <h3>Minecraft</h3>
-      <p>Explorez un monde infini, minez des ressources et construisez des structures incroyables avec des blocs !</p>
-      <a href="https://www.minecraft.net/fr-fr" target="_blank">Voir</a>
-    </div>
+  // تحديث رسالة الترحيب حسب الوقت
+  function updateGreeting() {
+    const hour = new Date().getHours();
+    const greeting = document.getElementById('greeting');
+    if (hour < 12) greeting.textContent = "☀️ صباح الخير! أدخل تاريخ ميلادك لحساب عمرك.";
+    else if (hour < 18) greeting.textContent = "🌤️ مساء الخير! لنحسب عمرك الآن.";
+    else greeting.textContent = "🌙 مساء الخير! هل تريد معرفة عمرك بدقة؟";
+  }
+  updateGreeting();
 
-  </div>
+  // دالة حساب العمر والوقت المتبقي لعيد الميلاد
+  function calculerAge() {
+    const dob = dobInput.value;
+    const resultat = document.getElementById('resultat');
+    const copyBtn = document.getElementById('copyBtn');
 
-  <!-- Pied de page -->
-  <footer id="contact">
-    © 2025 Boucéau de Games - Tous droits réservés.
-  </footer>
+    if (!dob) {
+      resultat.textContent = "⚠️ الرجاء إدخال تاريخ ميلاد صالح.";
+      copyBtn.style.display = 'none';
+      return;
+    }
+
+    const birthDate = new Date(dob);
+    const now = new Date();
+
+    if (birthDate > now) {
+      resultat.textContent = "❗ لا يمكن أن يكون تاريخ الميلاد في المستقبل!";
+      copyBtn.style.display = 'none';
+      return;
+    }
+
+    // حساب العمر التفصيلي
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = now.getMonth() - birthDate.getMonth();
+    let days = now.getDate() - birthDate.getDate();
+    let hours = now.getHours() - birthDate.getHours();
+    let minutes = now.getMinutes() - birthDate.getMinutes();
+    let seconds = now.getSeconds() - birthDate.getSeconds();
+
+    if (seconds < 0) {
+      seconds += 60;
+      minutes--;
+    }
+    if (minutes < 0) {
+      minutes += 60;
+      hours--;
+    }
+    if (hours < 0) {
+      hours += 24;
+      days--;
+    }
+    if (days < 0) {
+      months--;
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += prevMonth;
+    }
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+
+    // حساب الوقت المتبقي لعيد الميلاد القادم
+    let nextBirthday = new Date(now.getFullYear(), birthDate.getMonth(), birthDate.getDate(),
+                                birthDate.getHours(), birthDate.getMinutes(), birthDate.getSeconds());
+    if (now > nextBirthday) {
+      nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+    }
+
+    let diffToNextBirthday = nextBirthday - now;
+
+    let remDays = Math.floor(diffToNextBirthday / (1000 * 60 * 60 * 24));
+    let remHours = Math.floor((diffToNextBirthday / (1000 * 60 * 60)) % 24);
+    let remMinutes = Math.floor((diffToNextBirthday / (1000 * 60)) % 60);
+    let remSeconds = Math.floor((diffToNextBirthday / 1000) % 60);
+
+    // النتيجة بصيغة نصية مرتبة
+    const resultText = 
+      `🕒 عمرك الآن:\n` +
+      `${years} سنة، ${months} شهر، ${days} يوم\n` +
+      `${hours} ساعة، ${minutes} دقيقة، ${seconds} ثانية\n\n` +
+      `🎉 الوقت المتبقي لعيد ميلادك القادم:\n` +
+      `${remDays} يوم، ${remHours} ساعة، ${remMinutes} دقيقة، ${remSeconds} ثانية\n\n` +
+      `تمنياتي لك بسنة جديدة مليئة بالفرح والنجاح! 🎈`;
+
+    resultat.textContent = resultText;
+    copyBtn.style.display = 'inline-block';
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', calculerAge);
+
+  // زر النسخ
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    const text = document.getElementById('resultat').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      alert('تم نسخ النتيجة إلى الحافظة!');
+    });
+  });
+</script>
 
 </body>
 </html>
